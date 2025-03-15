@@ -13,19 +13,25 @@ class UserController extends Controller
     {
         $clinics = User::where('role', 'clinic')->with(['clinic', 'subscription'])->get();
         $pendingClinics = $clinics->where('approved', false);
+        // dd($clinics, $pendingClinics); // Debug
         return view('admin.users', compact('clinics', 'pendingClinics'));
     }
 
     public function approve($id)
     {
+        // $user = User::findOrFail($id);
+        // if ($user->role === 'clinic') {
+        //     $user->update(['approved' => true]);
+        //     if (! $user->clinic) {
+        //         Clinic::create(['user_id' => $user->id, 'name' => $user->name]);
+        //     }
+        // }
+        // return redirect()->route('admin.users.index')->with('success', 'Clinique approuvée.');
         $user = User::findOrFail($id);
-        if ($user->role === 'clinic') {
-            $user->update(['approved' => true]);
-            if (! $user->clinic) {
-                Clinic::create(['user_id' => $user->id, 'name' => $user->name]);
-            }
-        }
-        return redirect()->route('admin.users.index')->with('success', 'Clinique approuvée.');
+        $user->approved = true;
+        $user->save();
+
+        return redirect()->back()->with('message', 'Clinique approuvée.');
     }
 
     public function subscribe(Request $request, $id)
@@ -43,7 +49,7 @@ class UserController extends Controller
             [
                 'plan' => $request->plan,
                 'amount' => $request->amount,
-                'start_date' => now(),
+                'start_day' => now(),
                 'end_date' => $endDate,
                 'is_active' => true,
             ]

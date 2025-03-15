@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->enum('plan',['monthly','yearly']);
-            $table->decimal('amout',8,2);
+            $table->decimal('amount',8,2);
             $table->timestamp('start_day')->nullable();
             $table->timestamp('end_date')->nullable();
             $table->boolean('is_active')->default(false);

@@ -31,9 +31,13 @@ class CheckApproval
         //     return redirect('/dashboard')->with('error', 'Votre compte est en attente d’approbation.');
         // }
        
-        if ($request->user() && $request->user()->role === 'clinic' && !$request->user()->approved) {
-            Auth::logout(); 
-            return redirect('/login')->with('error', 'Votre compte est en attente d’approbation par un administrateur.');
+        // if ($request->user() && $request->user()->role === 'clinic' && !$request->user()->approved) {
+        //     Auth::logout(); 
+        //     return redirect('/login')->with('error', 'Votre compte est en attente d’approbation par un administrateur.');
+        // }
+       
+        if (Auth::check() && !Auth::user()->approved && $request->path() !== 'pending-approval') {
+            return redirect('/pending-approval')->with('message', 'Votre compte n’est pas encore approuvé.');
         }
 
         return $next($request);

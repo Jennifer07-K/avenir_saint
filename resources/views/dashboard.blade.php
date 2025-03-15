@@ -24,6 +24,8 @@
         @elseif (auth()->user()->role === 'admin')
             <p>Bienvenue, {{ auth()->user()->name }} !</p>
             <a href="{{ route('admin.users.index') }}" class="btn btn-primary">Gérer les cliniques</a>
+            <a href="{{ route('admin.users.index') }}" class="btn btn-primary">Gérer les Articles</a>
+
         @else
             <p>Bienvenue, {{ auth()->user()->name }} !</p>
             <a href="{{ route('forum') }}" class="btn btn-primary">Forum</a>

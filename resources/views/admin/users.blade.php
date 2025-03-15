@@ -2,7 +2,7 @@
 @section('title', 'Gestion des cliniques')
 @section('content')
     <section class="container section">
-        <h2>Gestion des cliniques</h2>
+        {{-- <h2>Gestion des cliniques</h2>
         @if (session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
@@ -39,7 +39,7 @@
                             <tr><td colspan="3">Aucune clinique en attente.</td></tr>
                         @endforelse
                     </tbody>
-                </table>
+                </table> --}}
 
                 <h3>Toutes les cliniques</h3>
                 <table class="table">
@@ -59,7 +59,7 @@
                                 <td>{{ $clinic->email }}</td>
                                 <td>{{ $clinic->approved ? 'Approuvée' : 'En attente' }}</td>
                                 <td>
-                                    @if ($clinic->subscription && $clinic->subscription->is_active)
+                                    @if ($clinic->subscription && $clinic->subscription->is_active)Plan 
                                         {{ ucfirst($clinic->subscription->plan) }} jusqu’au {{ $clinic->subscription->end_date->format('d/m/Y') }}
                                     @else
                                         Non abonnée
@@ -78,7 +78,7 @@
                                     @else
                                         <form action="{{ route('admin.users.deactivate', $clinic->id) }}" method="POST" class="d-inline">
                                             @csrf
-                                            @method('PATCH')
+                                            {{-- @method('PATCH') --}}
                                             <button type="submit" class="btn btn-warning btn-sm">Désactiver</button>
                                         </form>
                                     @endif
@@ -99,7 +99,7 @@
                                         </div>
                                         <form action="{{ route('admin.users.subscribe', $clinic->id) }}" method="POST">
                                             @csrf
-                                            @method('PATCH')
+                                            {{-- @method('PATCH') --}}
                                             <div class="modal-body">
                                                 <div class="mb-3">
                                                     <label for="plan" class="form-label">Plan</label>
@@ -109,7 +109,7 @@
                                                     </select>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="amount" class="form-label">Montant (€)</label>
+                                                    <label for="amount" class="form-label">Montant (fcfa)</label>
                                                     <input type="number" name="amount" id="amount" class="form-control" step="0.01" required>
                                                 </div>
                                             </div>

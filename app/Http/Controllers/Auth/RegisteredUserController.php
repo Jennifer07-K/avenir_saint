@@ -40,13 +40,16 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'approved' => $request->role === 'user' ? true : false, 
+            // 'approved' => $request->role === 'user' ? true : false, 
+            'approved'=>false,
+            'role' => $request->role,
         ]);
+        return redirect('/pending-approval')->with('message', 'Inscription envoyée, en attente d’approbation.');
 
-        event(new Registered($user));
-        Auth::login($user);
+         event(new Registered($user));
+         Auth::login($user);
 
-        return redirect()->route('dashboard');
+         return redirect()->route('dashboard');
 
     }
 }

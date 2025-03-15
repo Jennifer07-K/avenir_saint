@@ -18,8 +18,8 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->web(append: [
-            CheckApproval::class,
-            CheckSubscription::class
+            CheckSubscription::class,
+            // CheckApproval::class,
         ]);
          $middleware->alias([
              'role' => \App\Http\Middleware\RoleMiddleware::class,
@@ -28,3 +28,5 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withExceptions(function (Exceptions $exceptions) {
         //
     })->create();
+
+    
