@@ -1,57 +1,61 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 
 class ClinicController extends Controller
-
-
-
 {
-
-
     public function index()
     {
-        // Récupère toutes les cliniques approuvées
         $clinics = User::where('role', 'clinic')->where('approved', true)->get();
-
-        // Retourne la vue avec les cliniques
         return view('clinics.index', compact('clinics'));
     }
+
     public function services()
     {
-        $clinic = Auth::user()->clinic;
+        $clinic = Auth::user();
         return view('clinics.services', compact('clinic'));
     }
 
-    public function updateServices(Request $request)
+    public function updateServices(Request $request): RedirectResponse
     {
         $request->validate([
             'services' => 'required|array',
+            'services.*' => 'in:Dépistage,Consultation,Suivi',
         ]);
 
-        $clinic = Auth::user()->clinic;
-        $clinic->update(['services' => json_encode($request->services)]);
+        $clinic = Auth::user();
+        if (!$clinic instanceof User) {
+            throw new \Exception('L’utilisateur connecté n’est pas une instance de User');
+        }
+        $clinic->update([
+            'services' => $request->services,
+        ]);
 
-        return redirect()->route('clinics.services')->with('success', 'Services mis à jour !');
+        return redirect()->route('clinics.services')->with('success', 'Services mis à jour.');
     }
 
     public function profile()
     {
-        $clinic = Auth::user()->clinic;
+        $clinic = Auth::user();
         return view('clinics.profile', compact('clinic'));
     }
 
-    public function updateProfile(Request $request)
+    public function updateProfile(Request $request): RedirectResponse
     {
         $request->validate([
             'address' => 'required|string|max:255',
             'phone' => 'required|string|max:15',
         ]);
 
-        $clinic = Auth::user()->clinic;
+        $clinic = Auth::user();
+        if (!$clinic instanceof User) {
+            throw new \Exception('L’utilisateur connecté n’est pas une instance de User');
+        }
         $clinic->update([
             'address' => $request->address,
             'phone' => $request->phone,
@@ -60,3 +64,7 @@ class ClinicController extends Controller
         return redirect()->route('clinics.profile')->with('success', 'Profil mis à jour !');
     }
 }
+
+
+
+

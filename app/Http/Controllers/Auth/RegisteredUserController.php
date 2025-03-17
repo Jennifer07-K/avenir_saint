@@ -46,7 +46,7 @@ class RegisteredUserController extends Controller
         ]);
         return redirect('/pending-approval')->with('message', 'Inscription envoyée, en attente d’approbation.');
 
-         event(new Registered($user));
+          event(new Registered($user));
          Auth::login($user);
 
          return redirect()->route('dashboard');

@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use App\Providers\RouteServiceProvider;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -23,20 +24,28 @@ class AuthenticatedSessionController extends Controller
      * Handle an incoming authentication request.
      */
     public function store(LoginRequest $request): RedirectResponse
-    {
-        // $request->authenticate();
 
+    
+    {
+         $request->authenticate();
+
+         $request->session()->regenerate();
+
+         $user = Auth::user();
+    if (!$user->approved) {
+        return redirect()->route('pending-approval')->with('message', 'Votre compte est en attente d’approbation.');
+    }
+        //  return redirect()->intended(RouteServiceProvider::HOME);
+
+         return redirect()->intended(route('dashboard', absolute: false));
+        // $request->authenticate();
         // $request->session()->regenerate();
 
-        // return redirect()->intended(route('dashboard', absolute: false));
-        $request->authenticate();
-    $request->session()->regenerate();
+        // if (!Auth::user()->approved) {
+        //     return redirect('/pending-approval');
+        // }
 
-    if (!Auth::user()->approved) {
-        return redirect('/pending-approval');
-    }
-
-    return redirect()->intended(route('dashboard'));
+        // return redirect()->intended(route('dashboard'));
     }
 
     /**

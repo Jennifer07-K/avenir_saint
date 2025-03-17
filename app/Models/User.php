@@ -22,7 +22,15 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
-        'approved'
+        'approved',
+        'services',
+        'address',  
+        'phone',
+    ];
+
+    protected $casts = [
+        'services' => 'array', 
+        'approved' => 'boolean',
     ];
    
     public function clinic()

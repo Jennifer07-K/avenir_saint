@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // Schema::table('users', function (Blueprint $table) {
-        //     $table->boolean('approved')->default(false);
-        // });
+        Schema::table('users', function (Blueprint $table) {
+            $table->json('services')->nullable()->after('role'); 
+        });
     }
 
     /**
@@ -21,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        // Schema::table('users', function (Blueprint $table) {
-        //     $table->dropColumn('approved');
-        // });
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('services');
+        });
     }
 };

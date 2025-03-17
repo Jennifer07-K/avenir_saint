@@ -14,6 +14,7 @@ Route::get('/', function () {
 Route::get('/informations', [ContentController::class, 'index'])->name('info');
 
 Route::get('/cliniques', [ClinicController::class, 'index'])->name('clinics');
+Route::get('/forum', [ThreadController::class, 'index'])->middleware(['auth', \App\Http\Middleware\CheckSubscription::class])->name('forum');
 
 // Route::get('/forum', [ThreadController::class, 'index'])->middleware(['auth', 'subscription'])->name('forum');
 
@@ -51,10 +52,10 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
 //     Route::get('/clinics/profile', [ClinicController::class, 'profile'])->name('clinics.profile');
 //     Route::patch('/clinics/profile', [ClinicController::class, 'updateProfile'])->name('clinics.profile.update');
 // });
-Route::get('/forum', [ThreadController::class, 'index'])->middleware(['auth', \App\Http\Middleware\CheckSubscription::class])->name('forum');
 
 Route::middleware(['auth', 'role:clinic', \App\Http\Middleware\CheckSubscription::class])->group(function () {
     Route::get('/clinics/services', [ClinicController::class, 'services'])->name('clinics.services');
+    Route::patch('/clinics/services', [ClinicController::class, 'updateServices'])->name('clinics.services.update'); 
     Route::get('/clinics/profile', [ClinicController::class, 'profile'])->name('clinics.profile');
     Route::patch('/clinics/profile', [ClinicController::class, 'updateProfile'])->name('clinics.profile.update');
 });

@@ -18,7 +18,7 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->web(append: [
-            CheckSubscription::class,
+            // CheckSubscription::class,
             // CheckApproval::class,
         ]);
          $middleware->alias([
