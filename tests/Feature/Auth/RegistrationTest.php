@@ -12,8 +12,15 @@ test('new users can register', function () {
         'email' => 'test@example.com',
         'password' => 'password',
         'password_confirmation' => 'password',
+        'role' => 'user',
     ]);
 
-    $this->assertAuthenticated();
-    $response->assertRedirect(route('dashboard', absolute: false));
+    $this->assertDatabaseHas('users', [
+        'email' => 'test@example.com',
+        'approved' => false, 
+    ]);
+
+
+
+    $response->assertRedirect(route('pending-approval'));
 });
