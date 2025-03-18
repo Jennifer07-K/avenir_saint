@@ -1,48 +1,16 @@
 @extends('layouts.app')
-@section('title', 'Gestion des cliniques')
-@section('content')
-    <section class="container section">
-        {{-- <h2>Gestion des cliniques</h2>
-        @if (session('success'))
-            <div class="alert alert-success">{{ session('success') }}</div>
-        @endif
-        <div class="card">
-            <div class="card-body">
-                <h3>Cliniques en attente</h3>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Nom</th>
-                            <th>Email</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse ($pendingClinics as $clinic)
-                            <tr>
-                                <td>{{ $clinic->name }}</td>
-                                <td>{{ $clinic->email }}</td>
-                                <td>
-                                    <form action="{{ route('admin.users.approve', $clinic->id) }}" method="POST" class="d-inline">
-                                        @csrf
-                                        @method('PATCH')
-                                        <button type="submit" class="btn btn-success btn-sm">Approuver</button>
-                                    </form>
-                                    <form action="{{ route('admin.users.destroy', $clinic->id) }}" method="POST" class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Supprimer ?')">Supprimer</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        @empty
-                            <tr><td colspan="3">Aucune clinique en attente.</td></tr>
-                        @endforelse
-                    </tbody>
-                </table> --}}
 
-                <h3>Toutes les cliniques</h3>
-                <table class="table">
+@section('title', 'Gestion des cliniques')
+
+@section('content')
+    <section class="container section clinic-management">
+        <h2 class="clinic-management__title">Gestion des cliniques</h2>
+
+        <div class="clinic-management__card">
+            <div class="clinic-management__card-body">
+                <h3 class="clinic-management__subtitle">Toutes les cliniques</h3>
+
+                <table class="clinic-management__table">
                     <thead>
                         <tr>
                             <th>Nom</th>
@@ -54,41 +22,57 @@
                     </thead>
                     <tbody>
                         @forelse ($clinics as $clinic)
-                            <tr>
+                            <tr class="clinic-management__row">
                                 <td>{{ $clinic->name }}</td>
                                 <td>{{ $clinic->email }}</td>
-                                <td>{{ $clinic->approved ? 'Approuvée' : 'En attente' }}</td>
                                 <td>
-                                    @if ($clinic->subscription && $clinic->subscription->is_active)Plan 
-                                        {{ ucfirst($clinic->subscription->plan) }} jusqu’au {{ $clinic->subscription->end_date->format('d/m/Y') }}
-                                    @else
-                                        Non abonnée
-                                    @endif
+                                    <span class="clinic-management__status {{ $clinic->approved ? 'clinic-management__status--approved' : 'clinic-management__status--pending' }}">
+                                        {{ $clinic->approved ? 'Approuvée' : 'En attente' }}
+                                    </span>
                                 </td>
                                 <td>
+                                    @if ($clinic->subscription && $clinic->subscription->is_active)
+                                        <span class="clinic-management__subscription">
+                                            Plan {{ ucfirst($clinic->subscription->plan) }} jusqu’au {{ $clinic->subscription->end_date->format('d/m/Y') }}
+                                        </span>
+                                    @else
+                                        <span class="clinic-management__subscription clinic-management__subscription--inactive">
+                                            Non abonnée
+                                        </span>
+                                    @endif
+                                </td>
+                                <td class="clinic-management__actions">
                                     @if (!$clinic->approved)
                                         <form action="{{ route('admin.users.approve', $clinic->id) }}" method="POST" class="d-inline">
                                             @csrf
                                             @method('PATCH')
-                                            <button type="submit" class="btn btn-success btn-sm">Approuver</button>
+                                            <button type="submit" class="btn btn-success btn-sm clinic-management__btn">
+                                                <i class="fas fa-check"></i> Approuver
+                                            </button>
                                         </form>
                                     @endif
                                     @if (!$clinic->subscription || !$clinic->subscription->is_active)
-                                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#subscribeModal{{ $clinic->id }}">Abonner</button>
+                                        <button class="btn btn-primary btn-sm clinic-management__btn" data-bs-toggle="modal" data-bs-target="#subscribeModal{{ $clinic->id }}">
+                                            <i class="fas fa-plus"></i> Abonner
+                                        </button>
                                     @else
                                         <form action="{{ route('admin.users.deactivate', $clinic->id) }}" method="POST" class="d-inline">
                                             @csrf
-                                            {{-- @method('PATCH') --}}
-                                            <button type="submit" class="btn btn-warning btn-sm">Désactiver</button>
+                                            <button type="submit" class="btn btn-warning btn-sm clinic-management__btn">
+                                                <i class="fas fa-ban"></i> Désactiver
+                                            </button>
                                         </form>
                                     @endif
                                     <form action="{{ route('admin.users.destroy', $clinic->id) }}" method="POST" class="d-inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Supprimer ?')">Supprimer</button>
+                                        <button type="submit" class="btn btn-danger btn-sm clinic-management__btn" onclick="return confirm('Supprimer ?')">
+                                            <i class="fas fa-trash"></i> Supprimer
+                                        </button>
                                     </form>
                                 </td>
                             </tr>
+
                             <!-- Modal pour abonnement -->
                             <div class="modal fade" id="subscribeModal{{ $clinic->id }}" tabindex="-1" aria-labelledby="subscribeModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
@@ -99,7 +83,6 @@
                                         </div>
                                         <form action="{{ route('admin.users.subscribe', $clinic->id) }}" method="POST">
                                             @csrf
-                                            {{-- @method('PATCH') --}}
                                             <div class="modal-body">
                                                 <div class="mb-3">
                                                     <label for="plan" class="form-label">Plan</label>
@@ -122,10 +105,19 @@
                                 </div>
                             </div>
                         @empty
-                            <tr><td colspan="5">Aucune clinique enregistrée.</td></tr>
+                            <tr>
+                                <td colspan="5" class="clinic-management__empty">Aucune clinique enregistrée.</td>
+                            </tr>
                         @endforelse
                     </tbody>
                 </table>
+
+                <!-- Pagination -->
+                {{-- @if ($clinics->hasPages())
+                    <div class="clinic-management__pagination">
+                        {{ $clinics->links() }}
+                    </div>
+                @endif --}}
             </div>
         </div>
     </section>

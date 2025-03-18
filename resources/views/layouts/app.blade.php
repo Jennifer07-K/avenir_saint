@@ -88,51 +88,12 @@
     
   <footer id="footer" class="footer light-background">
 
-    <div class="row gy-4">
-      <div class="col-lg-4 col-md-6 footer-about">
-        <a href="index.html" class="logo d-flex align-items-center">
-          <span class="sitename">EPAS</span>
-        </a>
-        <div class="footer-contact pt-3">
-          <p>Lomé Togo</p>
-          {{-- <p>New York, NY 535022</p> --}}
-          <p class="mt-3"><strong>Phone:</strong> <span>+22870351225 </span></p>
-          <p><strong>Email:</strong> <span>epaselectrophorese@gmail.com</span></p>
-        </div>
-        <div class="social-links d-flex mt-4">
-          <a href=""><i class="bi bi-twitter-x"></i></a>
-          <a href=""><i class="bi bi-facebook"></i></a>
-          <a href=""><i class="bi bi-instagram"></i></a>
-          <a href=""><i class="bi bi-linkedin"></i></a>
-        </div>
-      </div>
+ 
 
-      <div class="col-lg-2 col-md-3 footer-links">
-        <h4>Liens Utiles</h4>
-        <ul>
-
-            <li><a href="{{ route('home') }}">Accueil</a></li>
-            <li><a href="{{ route('info') }}">Informations</a></li>
-            <li><a href="{{ route('clinics') }}">Cliniques</a></li>
-            <li><a href="{{ route('forum') }}">Forum</a></li>
-         
-        </ul>
-      </div>
-
-    
-
-  
-
-    
-
-    </div>
-  </div> 
 
   <div class="container copyright text-center mt-4">
     <p>© <span>Copyright</span> <strong class="px-1 sitename">EPAS</strong> <span>Tous Droits Réservés</span></p>
-    <div class="credits">
-  
-    </div>
+ 
   </div>
 
 </footer>

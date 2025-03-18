@@ -70,6 +70,595 @@ h6 {
     font-family: var(--heading-font);
 }
 
+/* Dashboard Styles */
+.dashboard {
+    padding: 2rem;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard__title {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+.dashboard__welcome {
+    font-size: 1.25rem;
+    color: #555;
+    margin-bottom: 1.5rem;
+}
+
+.dashboard__cards {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.dashboard__card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    flex: 1 1 250px; /* Flex-grow, flex-shrink, flex-basis */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dashboard__card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.dashboard__card-icon {
+    font-size: 2rem;
+    color: #007bff;
+    margin-bottom: 1rem;
+}
+
+.dashboard__card-title {
+    font-size: 1.25rem;
+    color: #333;
+    margin-bottom: 0.75rem;
+}
+
+.dashboard__card-description {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+
+.dashboard__card-btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.dashboard__card-btn:hover {
+    background-color: #0056b3;
+}
+
+.dashboard__alert {
+    color: #dc3545;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+/* Annuaire des cliniques */
+.clinic-directory {
+    padding: 2rem;
+}
+
+.clinic-directory__title {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.clinic-directory__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Carte de clinique */
+.clinic-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    /* transition: transform 0.3s ease, box-shadow 0.3s ease; */
+}
+
+/* .clinic-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+} */
+
+.clinic-card__header {
+    padding: 1.5rem;
+    background-color: var(--accent-color);
+}
+
+.clinic-card__title {
+    font-size: 1.5rem;
+    margin: 0;
+}
+.clinic-card__header h2 {
+    color: var(--background-color);
+}
+
+.clinic-card__link {
+    color: var(--background-color);
+    text-decoration: none;
+}
+
+/* .clinic-card__link:hover {
+    text-decoration: underline;
+} */
+
+.clinic-card__body {
+    padding: 1.5rem;
+}
+
+.clinic-card__info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.clinic-card__icon {
+    font-size: 1.2rem;
+    color: #007bff;
+}
+
+.clinic-card__text {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.clinic-card__footer {
+    padding: 1.5rem;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.clinic-card__btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.clinic-card__btn:hover {
+    background-color: #0056b3;
+}
+
+/* Gestion des services */
+.manage-services {
+    padding: 2rem;
+}
+
+.manage-services__title {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.manage-services__alert {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.manage-services__card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.manage-services__card-body {
+    padding: 1.5rem;
+}
+
+.manage-services__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.manage-services__form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.manage-services__label {
+    font-size: 1rem;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.manage-services__icon {
+    font-size: 1.2rem;
+    color: #007bff;
+}
+
+.manage-services__select {
+    padding: 0.75rem;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.manage-services__select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+    outline: none;
+}
+
+.manage-services__hint {
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 0.25rem;
+}
+
+.manage-services__submit {
+    align-self: flex-start;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.manage-services__submit:hover {
+    background-color: #0056b3;
+}
+
+/* Profil */
+.profile {
+    padding: 2rem;
+}
+
+.profile__title {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.profile__alert {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.profile__card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.profile__card-body {
+    padding: 1.5rem;
+}
+
+.profile__info {
+    margin-bottom: 2rem;
+}
+
+.profile__clinic-name {
+    font-size: 1.75rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+.profile__info-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.profile__icon {
+    font-size: 1.2rem;
+    color: #007bff;
+}
+
+.profile__info-text {
+    margin: 0;
+    font-size: 1rem;
+    color: #555;
+}
+
+.profile__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.profile__form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.profile__label {
+    font-size: 1rem;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.profile__input {
+    padding: 0.75rem;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile__input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+    outline: none;
+}
+
+.profile__error {
+    font-size: 0.875rem;
+    color: #dc3545;
+    margin-top: 0.25rem;
+}
+
+.profile__submit {
+    align-self: flex-start;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.profile__submit:hover {
+    background-color: #0056b3;
+}
+
+/* Gestion des cliniques */
+.clinic-management {
+    padding: 2rem;
+}
+
+.clinic-management__title {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.clinic-management__card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.clinic-management__card-body {
+    padding: 1.5rem;
+}
+
+.clinic-management__subtitle {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+.clinic-management__table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.clinic-management__table th,
+.clinic-management__table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.clinic-management__table th {
+    background-color: #f9f9f9;
+    font-weight: 600;
+}
+
+.clinic-management__row:hover {
+    background-color: #f5f5f5;
+}
+
+.clinic-management__status {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.clinic-management__status--approved {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.clinic-management__status--pending {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.clinic-management__subscription {
+    font-size: 0.875rem;
+    color: #333;
+}
+
+.clinic-management__subscription--inactive {
+    color: #dc3545;
+}
+
+.clinic-management__actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.clinic-management__btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    transition: background-color 0.3s ease;
+}
+
+.clinic-management__btn i {
+    font-size: 0.875rem;
+}
+
+.clinic-management__empty {
+    text-align: center;
+    color: #666;
+    padding: 1rem;
+}
+
+.clinic-management__pagination {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+/* Section de connexion */
+.light-background {
+    background-color: #f8f9fa;
+    padding: 4rem 0;
+}
+
+.login-card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.login-title {
+    font-size: 2rem;
+    color: #333;
+    font-weight: 700;
+}
+
+.login-subtitle {
+    font-size: 1rem;
+    color: #666;
+}
+
+.login-form {
+    margin-top: 1.5rem;
+}
+
+.input-group {
+    margin-bottom: 1rem;
+}
+
+.input-group-text {
+    background-color: #fff;
+    border-right: none;
+    color: #666;
+}
+
+.form-control {
+    border-left: none;
+    padding-left: 0.5rem;
+    background-color: var(--background-color);
+
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-check-input {
+    margin-right: 0.5rem;
+}
+
+.form-check-label {
+    font-size: 0.875rem;
+    color: #555;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.text-primary {
+    color: #007bff !important;
+}
+
+.text-primary:hover {
+    color: #0056b3 !important;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+}
+
+.text-danger {
+    color: #dc3545;
+    font-size: 0.875rem;
+}
+
 /* Pulsating Play Button
 ------------------------------*/
 /* .pulsating-play-btn {
