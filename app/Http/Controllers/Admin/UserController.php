@@ -58,7 +58,7 @@ class UserController extends Controller
         return redirect()->route('admin.users.index')->with('success', 'Abonnement ajouté.');
     }
 
-    public function deactivateSubscription($id)
+    public function deactivate($id)
     {
         $user = User::findOrFail($id);
         if ($user->subscription) {
@@ -66,6 +66,7 @@ class UserController extends Controller
         }
         return redirect()->route('admin.users.index')->with('success', 'Abonnement désactivé.');
     }
+
 
     public function destroy($id)
     {

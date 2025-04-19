@@ -576,7 +576,6 @@ h6 {
     border: none;
     border-radius: 12px;
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .login-card:hover {
@@ -586,13 +585,13 @@ h6 {
 
 .login-title {
     font-size: 2rem;
-    color: #333;
+    color: var(--heading-color);
     font-weight: 700;
 }
 
 .login-subtitle {
     font-size: 1rem;
-    color: #666;
+    color: var(--heading-color);
 }
 
 .login-form {
@@ -606,14 +605,13 @@ h6 {
 .input-group-text {
     background-color: #fff;
     border-right: none;
-    color: #666;
+    color: var(--heading-color);
 }
 
 .form-control {
     border-left: none;
     padding-left: 0.5rem;
     background-color: var(--background-color);
-
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -626,24 +624,20 @@ h6 {
     color: #555;
 }
 
-.btn-primary {
-    background-color: #007bff;
+#btn {
+    background-color: var(--nav-dropdown-hover-color);
+    color: #000;
     border: none;
     padding: 0.75rem 1.5rem;
     border-radius: 8px;
-    transition: background-color 0.3s ease;
 }
-
+/* 
 .btn-primary:hover {
     background-color: #0056b3;
-}
+} */
 
 .text-primary {
-    color: #007bff !important;
-}
-
-.text-primary:hover {
-    color: #0056b3 !important;
+    color: #007bff;
 }
 
 .alert-success {

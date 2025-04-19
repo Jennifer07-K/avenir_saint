@@ -49,7 +49,7 @@
                                             <i class="fas fa-lock"></i>
                                         </span>
                                         <x-text-input id="password" 
-                                                      class="form-control" 
+                                                      class="bg-white  form-control" 
                                                       type="password" 
                                                       name="password" 
                                                       required 
@@ -70,14 +70,13 @@
                                     </label>
                                 </div>
 
-                                <!-- Submit and Forgot Password -->
                                 <div class="d-flex align-items-center justify-content-between">
                                     @if (Route::has('password.request'))
                                         <a class="text-sm text-primary hover:underline" href="{{ route('password.request') }}">
                                             {{ __('Mot de passe oublié ?') }}
                                         </a>
                                     @endif
-                                    <x-primary-button class="btn btn-primary">
+                                    <x-primary-button class="btn btn-primary" id="btn" >
                                         {{ __('Se connecter') }}
                                     </x-primary-button>
                                 </div>
